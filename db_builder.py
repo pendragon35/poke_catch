@@ -31,10 +31,21 @@ def save_html(num):
   s_out.close()
   print "done writing %s to s_out" % fname
 
-def main():
-  for i in range(16,21):
+# def make_dicts(num):
+
+# def write_dicts(num):
+
+def main(argv):
+  if (len(argv) != 3) {
+    print "Usage: db_builder.py start end"
+    print "Enter pokemon numbers to start/end building"
+  }
+
+  # add option to save html/build dict later with flags
+
+  for i in range(argv[1],argv[2]):
     save_html(i)
 
 
 if __name__ == '__main__':
-  main()
+  main(sys.argv)
