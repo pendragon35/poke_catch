@@ -41,12 +41,12 @@ def save_html(num):
 def main(argv):
   if (len(argv) != 3):
     print "Usage: db_builder.py start end"
-    print "Enter pokemon numbers to start/end building"
+    print "Enter pokemon numbers to start/end building. Use normal numbers, not computer indexing."
     sys.exit()
 
   # add option to save html/build dict later with flags
 
-  for i in range(int(argv[1]),int(argv[2])):
+  for i in range(int(argv[1]),int(argv[2])+1):
     save_html(i)
 
 
