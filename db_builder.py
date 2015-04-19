@@ -1,4 +1,4 @@
-import urllib2, io
+import urllib2
 import sys
 from bs4 import BeautifulSoup
 
@@ -22,12 +22,15 @@ def save_html(num):
   print "**** opening %s" % curr_url
 
   curr_page = urllib2.urlopen(curr_url)
-  soup = BeautifulSoup(curr_page.read())
+  # soup = BeautifulSoup(curr_page.read())
 
   fname = "html/%s" % curr_url[BEGIN_LEN:]
 
-  s_out = io.open(fname, "w", encoding = 'utf8')
-  s_out.write(soup.prettify())
+  # s_out = io.open(fname, "w", encoding = 'utf8')
+  s_out = open(fname, "w")
+  # s_out.write(soup.prettify())
+  curr_contents = curr_page.read()
+  s_out.write(curr_contents)
   s_out.close()
   print "done writing %s to s_out" % fname
 
@@ -43,7 +46,7 @@ def main(argv):
 
   # add option to save html/build dict later with flags
 
-  for i in range(argv[1],argv[2]):
+  for i in range(int(argv[1]),int(argv[2])):
     save_html(i)
 
 
