@@ -17,6 +17,9 @@ def get_url(num):
 
   return S_URL_BEGIN+num_str+S_URL_END
 
+def get_fname(curr_url):
+  return "html/%s" % curr_url[BEGIN_LEN:]
+
 def save_html(num):
   curr_url = get_url(num)
   print "**** opening %s" % curr_url
@@ -24,7 +27,7 @@ def save_html(num):
   curr_page = urllib2.urlopen(curr_url)
   # soup = BeautifulSoup(curr_page.read())
 
-  fname = "html/%s" % curr_url[BEGIN_LEN:]
+  fname = get_fname(curr_url)
 
   # s_out = io.open(fname, "w", encoding = 'utf8')
   s_out = open(fname, "w")
