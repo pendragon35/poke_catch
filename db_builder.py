@@ -73,13 +73,13 @@ def main(argv):
     for i in range(int(argv[2]),int(argv[3])+1):
       save_html(i)
   elif (argv[1] == "-d" and len(argv) == 5):
-    outfile = open("table.txt","a+")
+    with open("table.txt","a+") as outfile:
+      #check if last line is > start or end
 
-    for i in range(int(argv[2]),int(argv[3])+1):
-      make_dicts(i, argv[4], outfile)
-      if (i % 10 == 0):
-        print "finished #%d" % i
-    outfile.close()
+      for i in range(int(argv[2]),int(argv[3])+1):
+        make_dicts(i, argv[4], outfile)
+        if (i % 10 == 0):
+          print "finished #%d" % i
   else:
     print_usage()
     sys.exit()
