@@ -79,9 +79,14 @@ def main(argv):
       last = outfile.readlines()[-1]
 
       last_num = int(last.split(',')[0])
-
       start = int(argv[2])
       end = int(argv[3])+1
+
+      if (last_num == MAX_POKE_NUM or start > MAX_POKE_NUM):
+        print "all already pokemon imported!"
+      if (end > MAX_POKE_NUM + 1):
+        end = MAX_POKE_NUM + 1
+
       if (last_num >= start):
         start = last_num + 1
       if (last_num >= end - 1):
@@ -93,6 +98,8 @@ def main(argv):
         make_dicts(i, argv[4], outfile)
         if (i % 10 == 0):
           print "finished #%d" % i
+
+    print "Done!"
   else:
     print_usage()
     sys.exit()
