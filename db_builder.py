@@ -75,8 +75,21 @@ def main(argv):
   elif (argv[1] == "-d" and len(argv) == 5):
     with open("table.txt","a+") as outfile:
       #check if last line is > start or end
+      outfile.seek(-100,1)
+      last = outfile.readlines()[-1]
 
-      for i in range(int(argv[2]),int(argv[3])+1):
+      last_num = int(last.split(',')[0])
+      
+      start = int(argv[2])
+      end = int(argv[3])+1
+      if (last_num > start):
+        start = last_num + 1
+      if (last_num >= end - 1):
+        print "Error: table exists past specified end number"
+        print "Now quitting..."
+        sys.exit()
+
+      for i in range(start,end):
         make_dicts(i, argv[4], outfile)
         if (i % 10 == 0):
           print "finished #%d" % i
