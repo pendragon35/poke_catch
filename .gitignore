@@ -1,3 +1,5 @@
 *.html
 # ignore the folder:
 html
+
+table.txt

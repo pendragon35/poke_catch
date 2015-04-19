@@ -35,7 +35,7 @@ def save_html(num):
 
   print "done writing %s to s_out" % fname
 
-def make_dicts(num,source,poke_dict,name_dict):
+def make_dicts(num,source,outfile):
   curr_url = get_url(num)
 
   if (source == '-l'):
@@ -49,7 +49,7 @@ def make_dicts(num,source,poke_dict,name_dict):
   if (source == '-l'):
     curr_html.close()
 
-  poke_name = soup.title.string.split(' ')[-1].lower()
+  poke_name = soup.title.string.split(' ')[-1].lower().encode("ascii",'ignore')
 
   fooinfos = soup.findAll("td","fooinfo",limit=SOUP_LIM)
   catch_rate = int(fooinfos[-1].string)
@@ -57,8 +57,7 @@ def make_dicts(num,source,poke_dict,name_dict):
   # print "fooinfos for %s" % poke_name
   # print fooinfos
   # print "\ncatch rate for %s is %d" % (poke_name,catch_rate)
-  name_dict[poke_name] = catch_rate
-  poke_dict[num] = catch_rate
+  outfile.write("%d,%s,%d\n" % (num,poke_name,catch_rate))
 
 def print_usage():
   print "Usage: db_builder.py [-s/-d] start end [-l/-i]"
@@ -74,12 +73,13 @@ def main(argv):
     for i in range(int(argv[2]),int(argv[3])+1):
       save_html(i)
   elif (argv[1] == "-d" and len(argv) == 5):
-    poke_dict = {}
-    name_dict = {}
+    outfile = open("table.txt","a+")
+
     for i in range(int(argv[2]),int(argv[3])+1):
-      make_dicts(i, argv[4], poke_dict, name_dict)
-    print poke_dict
-    print name_dict
+      make_dicts(i, argv[4], outfile)
+      if (i % 10 == 0):
+        print "finished #%d" % i
+    outfile.close()
   else:
     print_usage()
     sys.exit()
