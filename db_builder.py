@@ -36,10 +36,10 @@ def save_html(num):
 # def write_dicts(num):
 
 def main(argv):
-  if (len(argv) != 3) {
+  if (len(argv) != 3):
     print "Usage: db_builder.py start end"
     print "Enter pokemon numbers to start/end building"
-  }
+    sys.exit()
 
   # add option to save html/build dict later with flags
 
