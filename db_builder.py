@@ -53,7 +53,9 @@ def make_dicts(num,source,outfile):
   fooinfos = soup.findAll("td","fooinfo",limit=SOUP_LIM)
   poke_name = fooinfos[1].string.encode("ascii",'ignore').lower()
 
-  catch_rate = int(fooinfos[-1].string)
+  cr_str = fooinfos[-1].string
+  print cr_str
+  catch_rate = int(fooinfos[-1].string.split()[0])
 
   # print "fooinfos for %s" % poke_name
   # print fooinfos

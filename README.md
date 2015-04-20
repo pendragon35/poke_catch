@@ -10,3 +10,7 @@ Suggests an optimal pokeball based on %/cost
 
 Later:  
 use node.js for webapp interface
+different dictionaries for different games, scraper can tell apart
+
+Known issues:  
+Kyogre has parsing problems (due to differing catch rate in XY/ORAS)
