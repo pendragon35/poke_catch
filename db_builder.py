@@ -52,17 +52,21 @@ def make_dicts(num,source,outfile):
 
 
   fooinfos = soup.findAll("td","fooinfo",limit=SOUP_LIM)
-  poke_name = fooinfos[1].string.encode("ascii",'ignore').lower()
+  try:
+    poke_name = fooinfos[1].string.encode("ascii",'ignore').lower()
+    catch_rate = int(fooinfos[-1].string.split()[0])
+    outfile.write("%d,%s,%d\n" % (num,poke_name,catch_rate))
+
+  except AttributeError:
+    print "skipped %d, please add manually: %s" % (num, curr_url)
 
   # debugging stuff
   # cr_str = fooinfos[-1].string
   # print cr_str
-  catch_rate = int(fooinfos[-1].string.split()[0])
 
   # print "fooinfos for %s" % poke_name
   # print fooinfos
   # print "\ncatch rate for %s is %d" % (poke_name,catch_rate)
-  outfile.write("%d,%s,%d\n" % (num,poke_name,catch_rate))
 
 def print_usage():
   print "Usage: db_builder.py [-s/-d] start end [-l/-i]"
