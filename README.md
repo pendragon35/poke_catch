@@ -13,4 +13,6 @@ use node.js for webapp interface
 different dictionaries for different games, scraper can tell apart
 
 Known issues:  
-Kyogre has parsing problems (due to differing catch rate in XY/ORAS)
+#382 Kyogre has parsing problems (due to differing catch rate in XY/ORAS)
+#383 Groudon, #384 Rayquaza has same problems
+Above Pokemon hardcoded to ORAS values, since can't catch in XY
