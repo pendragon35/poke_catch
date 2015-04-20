@@ -119,7 +119,7 @@
 119,seaking,60
 120,staryu,225
 121,starmie,60
-122,mime,45
+122,mr. mime,45
 123,scyther,45
 124,jynx,45
 125,electabuzz,45
@@ -436,7 +436,7 @@
 436,bronzor,255
 437,bronzong,90
 438,bonsly,255
-439,jr.,145
+439,mime jr.,145
 440,happiny,130
 441,chatot,30
 442,spiritomb,100

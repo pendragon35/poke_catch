@@ -3,7 +3,8 @@ import sys
 from bs4 import BeautifulSoup
 
 MAX_POKE_NUM = 721 # changes b/w games
-S_URL_BEGIN = "http://www.serebii.net/pokedex-xy/"
+S_URL_BEGIN = "http://www.serebii.net/pokemon-bw"
+# S_URL_BEGIN = "http://www.serebii.net/pokedex-xy/"
 # S_URL_BEGIN = "http://www.serebii.net/pokedex-dp/"
 BEGIN_LEN = len(S_URL_BEGIN) # to avoid recalc later
 S_URL_END = ".shtml"
@@ -85,7 +86,7 @@ def main(argv):
     start = int(argv[2])
     end = int(argv[3])+1
 
-    with open("table_xy.txt","a+") as outfile:
+    with open("table_bw.txt","a+") as outfile:
       # check if last line is > start or end
 
       try:
@@ -94,8 +95,6 @@ def main(argv):
           outfile.seek(-2, 1)        # ...jump back the read byte plus one more.
         last = outfile.readline()      # Read last line.
 
-        # outfile.seek(-100,1)
-        # last = outfile.readlines()[-1]
         last_num = int(last.split(',')[0])
 
         if (last_num == MAX_POKE_NUM or start > MAX_POKE_NUM):
