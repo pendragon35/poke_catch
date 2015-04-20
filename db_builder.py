@@ -2,15 +2,24 @@ import urllib2
 import sys
 from bs4 import BeautifulSoup
 
-MAX_POKE_NUM = 721 # changes b/w games
+# make these a list!
+# MAX_POKE_NUM = 721 # VI
+MAX_POKE_NUM = 649 # V
+# MAX_POKE_NUM = IV
+
+# LIST THIS TOO! yay
 S_URL_BEGIN = "http://www.serebii.net/pokedex-bw/"
 # S_URL_BEGIN = "http://www.serebii.net/pokedex-xy/"
 # S_URL_BEGIN = "http://www.serebii.net/pokedex-dp/"
-BEGIN_LEN = len(S_URL_BEGIN) # to avoid recalc later
+
+BEGIN_LEN = len(S_URL_BEGIN) # put this in main()
 S_URL_END = ".shtml"
+
+# list this too
 # SOUP_LIM = 9 # XY
 SOUP_LIM = 10 # DP, BW
 
+# and list this
 # NAME_IDX = 1 # XY
 NAME_IDX = 0 # BW
 
@@ -81,6 +90,12 @@ def print_usage():
   print "For dict: -l to use local, -i for internet"
 
 def main(argv):
+  # -g for gen
+  # -r to indicate range
+
+  # -f for function (f or d)
+  # -s for source (l or i)
+
   if (len(argv) == 1):
     print_usage()
     sys.exit()
