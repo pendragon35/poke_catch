@@ -3,12 +3,16 @@ import sys
 from bs4 import BeautifulSoup
 
 MAX_POKE_NUM = 721 # changes b/w games
-S_URL_BEGIN = "http://www.serebii.net/pokemon-bw"
+S_URL_BEGIN = "http://www.serebii.net/pokedex-bw/"
 # S_URL_BEGIN = "http://www.serebii.net/pokedex-xy/"
 # S_URL_BEGIN = "http://www.serebii.net/pokedex-dp/"
 BEGIN_LEN = len(S_URL_BEGIN) # to avoid recalc later
 S_URL_END = ".shtml"
-SOUP_LIM = 9
+# SOUP_LIM = 9 # XY
+SOUP_LIM = 10 # DP, BW
+
+# NAME_IDX = 1 # XY
+NAME_IDX = 0 # BW
 
 def get_url(num):
   if (num < 10):
@@ -54,19 +58,20 @@ def make_dicts(num,source,outfile):
 
   fooinfos = soup.findAll("td","fooinfo",limit=SOUP_LIM)
   try:
-    poke_name = fooinfos[1].string.encode("ascii",'ignore').lower()
+    poke_name = fooinfos[NAME_IDX].string.encode("ascii",'ignore').lower()
     catch_rate = int(fooinfos[-1].string.split()[0])
     outfile.write("%d,%s,%d\n" % (num,poke_name,catch_rate))
 
   except AttributeError:
+    print "fooinfos for %d" % num
+    print fooinfos
     print "skipped %d, please add manually: %s" % (num, curr_url)
 
   # debugging stuff
   # cr_str = fooinfos[-1].string
   # print cr_str
 
-  # print "fooinfos for %s" % poke_name
-  # print fooinfos
+
   # print "\ncatch rate for %s is %d" % (poke_name,catch_rate)
 
 def print_usage():
