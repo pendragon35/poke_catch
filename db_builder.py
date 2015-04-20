@@ -2,8 +2,9 @@ import urllib2
 import sys
 from bs4 import BeautifulSoup
 
-MAX_POKE_NUM = 721 # get this from bulbapedia
+MAX_POKE_NUM = 721 # changes b/w games
 S_URL_BEGIN = "http://www.serebii.net/pokedex-xy/"
+# S_URL_BEGIN = "http://www.serebii.net/pokedex-dp/"
 BEGIN_LEN = len(S_URL_BEGIN) # to avoid recalc later
 S_URL_END = ".shtml"
 SOUP_LIM = 9
@@ -53,8 +54,9 @@ def make_dicts(num,source,outfile):
   fooinfos = soup.findAll("td","fooinfo",limit=SOUP_LIM)
   poke_name = fooinfos[1].string.encode("ascii",'ignore').lower()
 
-  cr_str = fooinfos[-1].string
-  print cr_str
+  # debugging stuff
+  # cr_str = fooinfos[-1].string
+  # print cr_str
   catch_rate = int(fooinfos[-1].string.split()[0])
 
   # print "fooinfos for %s" % poke_name
