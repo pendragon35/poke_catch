@@ -32,10 +32,10 @@ try:
 
       try: # key already exists
         p = Rates.objects.get(poke_num=poke_num_in)
-        print "use old"
+        # print "use old"
       except Rates.DoesNotExist:
         p = Rates(poke_num=poke_num_in, poke_name = row[NAME_POS])
-        print "made new"
+        # print "made new"
 
       if (fname == VALID_TABLES[DP]):
         p.dp_rate = catch_rate
@@ -45,7 +45,7 @@ try:
         p.xy_rate = catch_rate
 
       p.save()
-      print "saved"
+      # print "saved"
 
 except IOError:
   print "file does not exist"
