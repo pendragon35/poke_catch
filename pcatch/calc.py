@@ -1,4 +1,4 @@
-import sys
+import sys, csv
 
 NUM_POS = 0
 NAME_POS = 1
@@ -8,16 +8,20 @@ def make_dicts(fname):
   num_dict = {}
   name_dict = {}
   try:
-    with open(fname,"r") as tables:
-      entries = tables.read().split('\n')
+    # with open(fname,"r") as tables:
+    #   entries = tables.read().split('\n')
 
-      for entry in entries:
-        items = entry.split(',')
-        if (len(items) != 3):
-          continue
-        catch_rate = int(items[CATCH_POS])
-        num_dict[int(items[NUM_POS])] = catch_rate
-        name_dict[items[NAME_POS]] = catch_rate
+    #   for entry in entries:
+    #     items = entry.split(',')
+        # if (len(items) != 3):
+        #   continue
+
+    with open(fname) as tables:
+      reader = csv.reader(tables)
+      for row in reader:
+        catch_rate = int(row[CATCH_POS])
+        num_dict[int(row[NUM_POS])] = catch_rate
+        name_dict[row[NAME_POS]] = catch_rate
 
   except IOError:
     print "File did not exist!"
@@ -34,6 +38,7 @@ def print_usage():
 def main(argv):
   if (len(argv) < 3):
     print_usage()
+    sys.exit()
 
   for i in range(1,len(argv)):
     if (argv[i] == "-f"):
