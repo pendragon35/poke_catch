@@ -11,7 +11,6 @@ def make_dicts(fname):
     with open(fname,"r") as tables:
       entries = tables.read().split('\n')
 
-
       for entry in entries:
         items = entry.split(',')
         if (len(items) != 3):
@@ -19,6 +18,7 @@ def make_dicts(fname):
         catch_rate = int(items[CATCH_POS])
         num_dict[int(items[NUM_POS])] = catch_rate
         name_dict[items[NAME_POS]] = catch_rate
+
   except IOError:
     print "File did not exist!"
     sys.exit()

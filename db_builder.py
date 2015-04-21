@@ -1,5 +1,5 @@
 import urllib2
-import sys
+import sys, os
 from bs4 import BeautifulSoup
 
 # make these a list!
@@ -12,7 +12,7 @@ BEGIN_LEN = [31, 31, 34, 34, 34, 34]
 
 S_URL_END = ".shtml"
 
-SOUP_LIM = [-1,-1,142,10,10,9]
+SOUP_LIM = [-1,-1,598,10,10,9]
 NAME_IDX = [-1,-1,35,0,0,1]
 tnames = ["na.txt","na.txt","table_rs.csv","table_dp.csv","table_bw.csv","table_xy.csv"]
 
@@ -120,6 +120,9 @@ def main(argv):
       if (gen+1 > 6 or gen+1 < 1):
         print "Invalid generation."
         sys.exit()
+      if (get+1 == 3):
+        print "Sorry, Gen III not currently supported. Please use Gen IV."
+        sys.exit()
     elif (argv[i] == "-r"):
       start, end = get_range(int(argv[i+1]), int(argv[i+2]), gen)
       if (start == -1):
@@ -165,8 +168,11 @@ def main(argv):
 
       for i in range(start,end):
         make_dicts(i, source, outfile, gen)
-        if (i % 10 == 0):
-          print "finished #%d" % i
+        CURSOR_UP_ONE = '\x1b[1A'
+        ERASE_LINE = '\x1b[2K'
+        print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE) 
+        print "finished #%d" % i
+
 
     print "Done!"
   else:

@@ -4,3 +4,11 @@ html
 
 *.txt
 *.csv
+
+pcatch/pcatch/settings.py
+
+pcatch/pcatch/settings.pyc
+
+*.pyc
+
+pcatch/db.sqlite3
