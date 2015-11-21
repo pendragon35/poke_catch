@@ -1,0 +1,9 @@
+{% if myrates %}
+  <ul>
+  {% for pokemon in myrates %}
+    <li><p> Pokemon #{{pokemon.poke_num}}, {{pokemon.poke_name}}, XY catch rate of {{pokemon.xy_rate}} </p></li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p> I have nothing! </p>
+{% endif %}

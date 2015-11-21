@@ -1,0 +1,12 @@
+<h1> Pokemon catch rate calculator </h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:results' %}" method = "post">
+{% csrf_token %}
+Pokemon ID: <br>
+<input type = "text" name = "poke_id"> <br>
+Pokemon name: <br>
+<input type = "text" name = "poke_name"> <br>
+Health %(Enter a number from 1-100): <br>
+<input type = "text" name = "poke_health"> <br>
