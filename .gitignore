@@ -1,7 +1,3 @@
-*.html
-# ignore the folder:
-html
-
 *.txt
 *.csv
 
@@ -12,3 +8,5 @@ pcatch/pcatch/settings.pyc
 *.pyc
 
 pcatch/db.sqlite3
+
+*.idea
